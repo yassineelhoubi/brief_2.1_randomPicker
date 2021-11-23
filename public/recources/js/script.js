@@ -1,7 +1,3 @@
-document.getElementById('name').addEventListener("keyup", () => {
-  document.getElementById('name').classList.remove('border', 'border-danger')
-
-});
 
 /* add student */
 let studentsArrList = [];
@@ -67,10 +63,16 @@ addStudent.onclick = function () {
 
 }
 
+/* rRemove the following classes */
+document.getElementById('name').addEventListener("keyup", () => {
+  document.getElementById('name').classList.remove('border', 'border-danger')
+
+});
+
+
 function refreshStudentsList() {
   let sortList = ""
   studentsArrList.forEach(student => {
-
     sortList += `
              <li class="list-group-item d-flex justify-content-between align-items-start">
                          <div class="ms-2 me-auto">
@@ -105,27 +107,22 @@ function deleteStudent(id) {
   student = studentsArrList.filter((obj) => obj.studentNumber == id)
   removeStudent(student[0])
   refreshStudentsList()
-
 }
 function removeStudent(student) {
   studentsArrList.splice(studentsArrList.indexOf(student), 1);
-
 }
+/* To make the current day default and disable past days  */
 const datePicker = document.querySelector("#datePicker");
 datePicker.min = new Date().toLocaleDateString("en-ca");
-
 datePicker.value = new Date().toLocaleDateString("en-ca");
 
+/* To avoid choosing the weekend */
 datePicker.addEventListener("change", () => {
   const day = new Date(datePicker.value).getUTCDay();
   if ([0].includes(day)) {
-
     ifSun = new Date(datePicker.value)
     ifSun.setDate(ifSun.getDate() + 1)
-
     datePicker.value = ifSun.toLocaleDateString("en-ca")
-
-
     return false;
   } else if ([6].includes(day)) {
     ifSat = new Date(datePicker.value)
@@ -137,13 +134,9 @@ datePicker.addEventListener("change", () => {
 let nextDay = 0
 
 function pushToResultList(student) {
-
-
   let day = new Date(datePicker.value);
 
   day.setDate(day.getDate() + nextDay);
-  // console.log(day.setDate(day.getDate() + nextDay))//miliSecond
-
 
   let dd = String(day.getDate()).padStart(2, "0");
   let mm = String(day.getMonth() + 1).padStart(2, "0");
@@ -163,8 +156,6 @@ function pushToResultList(student) {
     student.date = theDate
     resultListArr.push(student)
   }
-
-
 }
 
 function refreshResultList() {
@@ -179,9 +170,6 @@ function refreshResultList() {
                          <span class="badge btn bg-primary rounded-pill">${student.date}</span>
                        </li>
              `
-
-
-
   })
 
   document.getElementById('resultList').innerHTML = sortList
