@@ -13,9 +13,12 @@
 <body>
   <!-- navbar -->
   <div class="container-fluid p-0 header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <nav class="navbar navbar-expand-lg navbar-light nav-bar">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><span class="fw-bold">Picker</span> Wheel</a>
+      </div>
+      <div class="container-fluid">
+        <button class="btn btn-outline-dark" onclick="downloadCSV()">export</button>
       </div>
     </nav>
   </div>
@@ -81,11 +84,22 @@
       </div>
 
       <!-- spiner container -->
-      <div class="col-4 h-100 d-flex align-items-center justify-content-center">
-        <div class="spinner_container">
-
-        <button onclick="randomSelect()">button</button>
-         
+      <div class="col-4 h-100 d-flex  justify-content-center ">
+        <div class="row ">
+          <div class="col-12 d-flex justify-content-center ">
+            <div class="row m-3 ">
+              <h4 class="text-center mb-3 fw-bold">Result</h4>
+            </div>
+          </div>
+          <div class="col-12 border border-primary picker-container d-flex justify-content-center align-items-center  ">
+            <button class="pick" id="pick">pick</button>
+            <div class="row">
+              <h1 id="variable_name">yassine</h1>
+            </div>
+          </div>
+          <div class="col-12">
+            <input type="date" id="datePicker">
+          </div>
         </div>
       </div>
 
@@ -116,6 +130,7 @@
 
   </div>
   <div>yassine</div>
+  <button onclick="pick()">add</button>
 
 </body>
 <script src="../recources/js/script.js"></script>
