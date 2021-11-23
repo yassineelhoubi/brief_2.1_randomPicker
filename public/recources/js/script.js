@@ -68,19 +68,8 @@ addStudent.onclick = function () {
 }
 
 function refreshStudentsList() {
-    let sortList = null
+    let sortList = ""
     studentsArrList.forEach(student => {
-        if (sortList == null) {
-            sortList = `
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                          <div class="fw-bold"><span class="me-2 fw-normal">${student.studentNumber}.</span>${student.name}</div>
-                          <div class="ms-4">${student.subject}</div>
-                        </div>
-                        <span class="badge btn btn-danger rounded-pill">delete</span>
-                      </li>
-            `
-        } else {
             sortList += `
              <li class="list-group-item d-flex justify-content-between align-items-start">
                          <div class="ms-2 me-auto">
@@ -91,7 +80,6 @@ function refreshStudentsList() {
                        </li>
              `
 
-        }
 
     })
 
@@ -185,30 +173,19 @@ function pushToResultList(student) {
 }
 
 function refreshResultList () {
-    let sortList = null
+    let sortList = ""
     resultListArr.forEach(student => {
-        if (sortList == null) {
-            sortList = `
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                          <div class="fw-bold"><span class="me-2 fw-normal">${student.studentNumber}.</span>${student.name}</div>
-                          <div class="ms-4">${student.subject}</div>
-                        </div>
-                        <span class="badge btn btn-danger rounded-pill">${student.date}</span>
-                      </li>
-            `
-        } else {
             sortList += `
              <li class="list-group-item d-flex justify-content-between align-items-start">
                          <div class="ms-2 me-auto">
                            <div class="fw-bold"><span class="me-2 fw-normal">${student.studentNumber}.</span>${student.name}</div>
                            <div class="ms-4">${student.subject}</div>
                          </div>
-                         <span class="badge btn bg-danger rounded-pill">${student.date}</span>
+                         <span class="badge btn bg-primary rounded-pill">${student.date}</span>
                        </li>
              `
 
-        }
+        
 
     })
 

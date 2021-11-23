@@ -15,10 +15,10 @@
   <div class="container-fluid p-0 header">
     <nav class="navbar navbar-expand-lg navbar-light nav-bar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><span class="fw-bold">Picker</span> Wheel</a>
+        <a class="navbar-brand text-white" href="#"><span class="fw-bold ">Random</span> Picker</a>
       </div>
-      <div class="container-fluid">
-        <button class="btn btn-outline-dark" onclick="downloadCSV()">export</button>
+      <div class="container-fluid justify-content-end">
+        <button class="btn btn-outline-light" onclick="downloadCSV()">export</button>
       </div>
     </nav>
   </div>
@@ -30,7 +30,7 @@
 
       <div class="col-4 h-100 ">
         <!-- enter container -->
-        <div class="container border border-primary  h-100 ">
+        <div class="container myContainers rounded-3 pt-3 pb-3 h-100 ">
           <div class="row m-3">
             <h4 class="text-center mb-3">Enter students</h4>
           </div>
@@ -66,14 +66,14 @@
           <div class="row m-3 ">
             <h4 class="text-center mb-3">List of students</h4>
           </div>
-          <div class="col-12 p-0 list-container-1">
-            <ol class="list-group list-group-flush form-control rounded-1" id="StudentsList">
+          <div class="col-12 p-0 list-container-1 scrollbar">
+            <ol class="list-group list-group-flush  form-control rounded-1" id="StudentsList">
               <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
                   <div class="fw-bold"><span class="me-2 fw-normal">0.</span>Student name</div>
                   <div class="ms-4">Subject</div>
                 </div>
-                <span class="badge bg-primary rounded-pill ">14</span>
+                <span class="badge bg-danger rounded-pill"><del>delete</del></span>
               </li>
 
 
@@ -88,36 +88,51 @@
         <div class="row ">
           <div class="col-12 d-flex justify-content-center ">
             <div class="row m-3 ">
-              <h4 class="text-center mb-3 fw-bold">Result</h4>
+              <h4 class="text-center mb-3 fw-bold">Picker</h4>
             </div>
           </div>
-          <div class="col-12 border border-primary picker-container d-flex justify-content-center align-items-center  ">
-            <button class="pick" id="pick">pick</button>
-            <div class="row">
-              <h1 id="variable_name">yassine</h1>
+          <div
+            class="col-12 myContainers rounded-3 pb-3 pt-3 picker-container d-flex flex-column justify-content-center align-items-center  ">
+            <div class="col-12">
+              <div class="mb-3 row">
+                <label for="date" class="col-sm-3 col-form-label">Défault date</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" id="datePicker">
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-outline-primary w-100" id="pick">start picker</button>
+            </div>
+            
+            <div class="row m-3 mt-5 w-100 ">
+              <div class="col-12">
+                <div class="cyrcle d-flex justify-content-center align-items-center">
+                  
+                  <h1 id="variable_name">Random</h1>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-12">
-            <input type="date" id="datePicker">
-          </div>
+
         </div>
       </div>
 
       <!-- result container -->
       <div class="col-4 h-100 ">
-        <div class="container border border-primary  h-100 ">
+        <div class="container myContainers rounded-3 pt-3 pb-3  h-100 ">
           <div class="row m-3">
             <h4 class="text-center mb-3">Draw Results</h4>
           </div>
-          <div class="container p-0 list-container-1">
+          <div class="container p-0 list-container-2 scrollbar">
             <ol class="list-group list-group-flush form-control rounded-1" id="resultList">
-              
+
               <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
-                  <div class="fw-bold">Subheading</div>
-                  Cras justo odio
+                  <div class="fw-bold"><span class="me-2 fw-normal">0.</span>Student name</div>
+                  <div class="ms-4">Subject</div>
                 </div>
-                <span class="badge bg-primary rounded-pill">14</span>
+                <span class="badge bg-primary rounded-pill ">Date</span>
               </li>
 
             </ol>
@@ -129,8 +144,6 @@
 
 
   </div>
-  <div>yassine</div>
-  <button onclick="pick()">add</button>
 
 </body>
 <script src="../recources/js/script.js"></script>
