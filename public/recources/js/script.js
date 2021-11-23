@@ -1,6 +1,6 @@
 document.getElementById('name').addEventListener("keyup", () => {
-    document.getElementById('name').classList.remove('border', 'border-danger')
-    
+  document.getElementById('name').classList.remove('border', 'border-danger')
+
 });
 
 /* add student */
@@ -18,72 +18,71 @@ pick.onclick = function () {
   for (let i = 0; i < studentsArrListRand.length; i++) {
 
     (function (i, count) {
-        setTimeout(() => {
-            let rand = Math.floor(Math.random() * (studentsArrListRand.length))
-            document.getElementById('variable_name').innerHTML = studentsArrListRand[rand].name
-            if (count === studentsArrListRand.length - 1) {
-               
-                    removeStudent (studentsArrListRand[rand])
-                    pushToResultList (studentsArrListRand[rand])
-                    refreshResultList ()
-                    refreshStudentsList ()
-                
-               
+      setTimeout(() => {
+        let rand = Math.floor(Math.random() * (studentsArrListRand.length))
+        document.getElementById('variable_name').innerHTML = studentsArrListRand[rand].name
+        if (count === studentsArrListRand.length - 1) {
 
-            }
+          removeStudent(studentsArrListRand[rand])
+          pushToResultList(studentsArrListRand[rand])
+          refreshResultList()
+          refreshStudentsList()
 
-        }, i)
+
+
+        }
+
+      }, i)
     })
-    (i*150 , i)
-}
+      (i * 150, i)
+  }
 }
 
 addStudent.onclick = function () {
 
-    let studentName = document.getElementById('name');
-    let studentSubject = document.getElementById('subject');
-    /* check if student name null */
-    if (studentName.value === "") {
-        return studentName.classList.add('border', 'border-danger');
-    }
-    /* Creates the object and push it to the studentsArrList */
-    obj = {
-        studentNumber: studentNumber,
-        name: studentName.value,
-        subject: studentSubject.value
-    }
-    studentsArrList.push(obj)
+  let studentName = document.getElementById('name');
+  let studentSubject = document.getElementById('subject');
+  /* check if student name null */
+  if (studentName.value === "") {
+    return studentName.classList.add('border', 'border-danger');
+  }
+  /* Creates the object and push it to the studentsArrList */
+  obj = {
+    studentNumber: studentNumber,
+    name: studentName.value,
+    subject: studentSubject.value
+  }
+  studentsArrList.push(obj)
 
-    /* increment the number of student */
-    studentNumber++
+  /* increment the number of student */
+  studentNumber++
 
-    /* refresh the students list */
+  /* refresh the students list */
 
-    refreshStudentsList()
+  refreshStudentsList()
 
-    /* reset input */
-    studentName.value = ""
-    studentSubject.value = ""
+  /* reset input */
+  studentName.value = ""
+  studentSubject.value = ""
 
 }
 
 function refreshStudentsList() {
-    let sortList = ""
-    studentsArrList.forEach(student => {
-            sortList += `
+  let sortList = ""
+  studentsArrList.forEach(student => {
+
+    sortList += `
              <li class="list-group-item d-flex justify-content-between align-items-start">
                          <div class="ms-2 me-auto">
                            <div class="fw-bold"><span class="me-2 fw-normal">${student.studentNumber}.</span>${student.name}</div>
                            <div class="ms-4">${student.subject}</div>
                          </div>
-                         <span class="badge btn bg-danger rounded-pill">delete</span>
+                         <span class="badge btn btn-danger rounded-pill" onclick="deleteStudent(${student.studentNumber})" >delete</span>
                        </li>
              `
+  })
 
-
-    })
-
-    document.getElementById('StudentsList').innerHTML = sortList
+  document.getElementById('StudentsList').innerHTML = sortList
 }
 
 
@@ -92,29 +91,25 @@ function randomSelect(array) {
   let arr = [...array]
 
   for (let i = arr.length - 1; i > 0; i--) {
-      let rand = Math.floor(Math.random() * (i + 1))
-      let temp = arr[rand]
+    let rand = Math.floor(Math.random() * (i + 1))
+    let temp = arr[rand]
 
-      arr[rand] = arr[i]
-      arr[i] = temp
+    arr[rand] = arr[i]
+    arr[i] = temp
   }
   return arr;
 
-
-    // let rand = Math.floor(Math.random() * studentsArrList.length);
-
-    // let student = studentsArrList[rand]
-
-    // removeStudent (student)
-    // pushToResultList (student)
-    // refreshResultList ()
-    // refreshStudentsList ()
 }
 
-function removeStudent(student) {
+function deleteStudent(id) {
+  student = studentsArrList.filter((obj) => obj.studentNumber == id)
+  removeStudent(student[0])
+  refreshStudentsList()
 
-    studentsArrList.splice(studentsArrList.indexOf(student), 1);
-    
+}
+function removeStudent(student) {
+  studentsArrList.splice(studentsArrList.indexOf(student), 1);
+
 }
 const datePicker = document.querySelector("#datePicker");
 datePicker.min = new Date().toLocaleDateString("en-ca");
@@ -126,15 +121,15 @@ datePicker.addEventListener("change", () => {
   if ([0].includes(day)) {
 
     ifSun = new Date(datePicker.value)
-    ifSun.setDate(ifSun.getDate()+1)
+    ifSun.setDate(ifSun.getDate() + 1)
 
     datePicker.value = ifSun.toLocaleDateString("en-ca")
 
-    
+
     return false;
   } else if ([6].includes(day)) {
     ifSat = new Date(datePicker.value)
-    ifSat.setDate(ifSat.getDate()+2)
+    ifSat.setDate(ifSat.getDate() + 2)
 
     datePicker.value = ifSat.toLocaleDateString("en-ca")
   }
@@ -143,39 +138,39 @@ let nextDay = 0
 
 function pushToResultList(student) {
 
-  
-    let day = new Date(datePicker.value);
-    
-    day.setDate(day.getDate() + nextDay);
-    // console.log(day.setDate(day.getDate() + nextDay))//miliSecond
- 
 
-    let dd = String(day.getDate()).padStart(2, "0");
-    let mm = String(day.getMonth() + 1).padStart(2, "0");
-    let yyyy = day.getFullYear();
+  let day = new Date(datePicker.value);
 
-    let theDate = dd+"/"+mm+"/"+yyyy;
-    let DayName = day.toString().split(' ')[0];
-     
-    console.log(DayName)
-    if(DayName == "Sat"){
-        nextDay += 2;
-        pushToResultList(student)
-    }
-    else{
+  day.setDate(day.getDate() + nextDay);
+  // console.log(day.setDate(day.getDate() + nextDay))//miliSecond
+
+
+  let dd = String(day.getDate()).padStart(2, "0");
+  let mm = String(day.getMonth() + 1).padStart(2, "0");
+  let yyyy = day.getFullYear();
+
+  let theDate = dd + "/" + mm + "/" + yyyy;
+  let DayName = day.toString().split(' ')[0];
+
+
+  if (DayName == "Sat") {
+    nextDay += 2;
+    pushToResultList(student)
+  }
+  else {
     nextDay++;
 
     student.date = theDate
     resultListArr.push(student)
-    }
-    
+  }
+
 
 }
 
-function refreshResultList () {
-    let sortList = ""
-    resultListArr.forEach(student => {
-            sortList += `
+function refreshResultList() {
+  let sortList = ""
+  resultListArr.forEach(student => {
+    sortList += `
              <li class="list-group-item d-flex justify-content-between align-items-start">
                          <div class="ms-2 me-auto">
                            <div class="fw-bold"><span class="me-2 fw-normal">${student.studentNumber}.</span>${student.name}</div>
@@ -185,11 +180,11 @@ function refreshResultList () {
                        </li>
              `
 
-        
 
-    })
 
-    document.getElementById('resultList').innerHTML = sortList
+  })
+
+  document.getElementById('resultList').innerHTML = sortList
 }
 
 const downloadCSV = () => {
