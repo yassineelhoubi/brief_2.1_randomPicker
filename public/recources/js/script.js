@@ -181,7 +181,6 @@ const downloadCSV = () => {
   var csv = 'id,Name,Subject,date\n';
   newArr = []
   resultListArr.map((e) => newArr.push(Object.values(e)));
-  console.log(newArr)
   newArr.forEach(function (row) {
     csv += row.join(',');
     csv += "\n";
