@@ -175,11 +175,24 @@ function refreshResultList() {
   document.getElementById('resultList').innerHTML = sortList
 }
 
+/* export Excel file */
 const downloadCSV = () => {
-  console.log(resultListArr)
-  let csvContent =
-    "data:text/csv;charset=utf-8," +
-    resultListArr.map((e) => [...Array.from(e)].join(",")).join("\n");
-  var encodedUri = encodeURI(csvContent);
-  window.open(encodedUri);
+
+  var csv = 'id,Name,Subject,date\n';
+  newArr = []
+  resultListArr.map((e) => newArr.push(Object.values(e)));
+  console.log(newArr)
+  newArr.forEach(function (row) {
+    csv += row.join(',');
+    csv += "\n";
+  });
+
+  var hiddenElement = document.createElement('a');
+  hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+  hiddenElement.target = '_blank';
+
+  //provide the name for the CSV file to be downloaded  
+  hiddenElement.download = 'Organisation des sujets de veilles.csv';
+  hiddenElement.click();
+
 };
